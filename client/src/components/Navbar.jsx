@@ -13,6 +13,7 @@ const Navbar = () => {
           <Link className='link' to="/?cat=art"><h6>ART</h6></Link>
           <Link className='link'><h6>ART2</h6></Link>
           <Link className='link'><h6>ART3</h6></Link>
+          <Link className='link'><h6>ART4</h6></Link>
           <span>John</span>
           <span>Logout</span>
           <span className='write'>
