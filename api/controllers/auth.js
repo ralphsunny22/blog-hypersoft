@@ -1,8 +1,38 @@
-import express from "express"
-//import { addPost } from "../controllers/post.js"
+import { db } from "../db.js"
+import bcrypt from "bcryptjs"
 
-const router = express.Router()
+export const register = (req,res)=>{
+    //check user exist
+    const q = "SELECT * FROM users WHERE email = ? OR username = ?"
 
-//router.get("/", addPost)
+    db.query(q, [req.body.email, req.body.username], (err,data)=>{
+        if(err) return res.json(err)
+        if(data.length) return res.status(409).json("User already exists");
+    
+        //hash pass, then create new user
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(req.body.password, salt)
 
-export default router
+        //insert query
+        const q = "INSERT INTO users(`username`,`email`,`password`) VALUES (?)"
+        const values = [
+            req.body.username,
+            req.body.email,
+            hash
+        ]
+        db.query(q, [values], (err,data)=>{
+            if(err) return res.json(err)
+            return res.status(200).json("User registered successfuly")
+        })
+
+    })
+
+}
+
+export const login = (req,res)=>{
+    res.json("from post controller")
+}
+
+export const logout = (req,res)=>{
+    res.json("from post controller")
+}
