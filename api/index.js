@@ -1,4 +1,5 @@
 import express from "express"
+import cors from "cors"
 import bodyParser from "body-parser"
 import authRoutes from "./routes/auth.js"
 import userRoutes from "./routes/users.js"
@@ -7,7 +8,7 @@ import postRoutes from "./routes/posts.js"
 const app = express();
 
 app.use(express.json()) //so dat we can send data to our db
-//app.use(bodyParser.json) 
+app.use(cors());
 
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
