@@ -1,5 +1,7 @@
 import express from "express"
 import bodyParser from "body-parser"
+import authRoutes from "./routes/auth.js"
+import userRoutes from "./routes/users.js"
 import postRoutes from "./routes/posts.js"
 
 const app = express();
@@ -7,6 +9,8 @@ const app = express();
 app.use(express.json()) //so dat we can send data to our db
 //app.use(bodyParser.json) 
 
+app.use("/api/auth", authRoutes)
+app.use("/api/users", userRoutes)
 app.use("/api/posts", postRoutes)
 
 const port = 5000;
