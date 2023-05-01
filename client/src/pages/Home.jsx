@@ -6,20 +6,20 @@ const Home = () => {
   const posts = [
     {
       id: 1,
-      title: "title 1",
-      desc: "desc title 1",
+      title: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero vitae, voluptates, consectetur.",
+      desc: "desc title 1 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero vitae, voluptates, consectetur",
       img: "https://gwammu.com/assets/featured_images/27545.jpeg"
     },
     {
       id: 2,
-      title: "title 2",
-      desc: "desc title 3",
+      title: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero vitae, voluptates, consectetur.",
+      desc: "desc title 2 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero vitae, voluptates, consectetur",
       img: "https://gwammu.com/assets/featured_images/27545.jpeg"
     },
     {
       id: 3,
-      title: "title 3",
-      desc: "desc title 3",
+      title: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero vitae, voluptates, consectetur.",
+      desc: "desc title 3 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero vitae, voluptates, consectetur",
       img: "https://gwammu.com/assets/featured_images/27545.jpeg"
     },
   ]
