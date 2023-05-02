@@ -1,5 +1,6 @@
 import { db } from "../db.js"
 import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
 
 export const register = (req,res)=>{
     //check user exist
@@ -30,8 +31,35 @@ export const register = (req,res)=>{
 }
 
 export const login = (req,res)=>{
-    res.json("from post controller")
-}
+    const q = "SELECT * FROM users WHERE username = ?"
+    const values = [
+        req.body.username,
+    ]
+    db.query(q, [values], (err,data)=>{
+        if(err) return res.json(err)
+        if(data.length == 0) return res.status(404).json("User Not Found");
+    
+        //check password
+        const isPasswordCorrect = bcrypt.compareSync(req.body.password, data[0].password)
+        if(!isPasswordCorrect) return res.status(400).json("Incorrect Username or Password");
+        
+        //jwt, store in cookie
+        const token = jwt.sign({ id: data[0].id }, "jwtkey");
+        const { password, ...other } = data[0];
+        res.cookie("access_token", token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'none'
+        })
+        .status(200)
+        .json(other);
+        
+        //return res.status(200).json("User Login successfuly")
+        // "Remember Me" for 15 minutes res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
+
+// save as above res.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
+    }) 
+};
 
 export const logout = (req,res)=>{
     res.json("from post controller")
