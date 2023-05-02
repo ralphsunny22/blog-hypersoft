@@ -6,8 +6,8 @@ const Home = () => {
 
   const [posts, setPosts] = useState([])
 
-  const cat = useLocation().search
-
+  const cat = useLocation().search //?cat=art
+  
   useEffect(() => {
     const fetchData = async ()=>{
       try {

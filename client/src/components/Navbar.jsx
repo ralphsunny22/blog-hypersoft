@@ -17,7 +17,7 @@ const Navbar = () => {
         </div>
         <div className='links'>
           <Link className='link' to="/?cat=art"><h6>ART</h6></Link>
-          <Link className='link'><h6>ART2</h6></Link>
+          <Link className='link' to="/?cat=food"><h6>FOOD</h6></Link>
           <Link className='link'><h6>ART3</h6></Link>
           <Link className='link'><h6>ART4</h6></Link>
           <span>{currentUser?.username}</span>

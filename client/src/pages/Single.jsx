@@ -51,7 +51,7 @@ const Single = () => {
     return <div>Loading...</div>; // Render a loading state when post is null
   }
 
-  const { img, userImg, username, date, title, desc } = post;
+  const { img, userImg, username, date, title, desc, cat } = post;
 
   // const renderUserInfo = () => (
   //   <div className="user">
@@ -73,7 +73,7 @@ const Single = () => {
 
             <div className="info">
               <span>{username}</span>
-              <p>Posted {post && moment(post.date).fromNow()}</p>
+              <p>Posted {post && moment(date).fromNow()}</p>
             </div>
 
             {currentUser && currentUser.username === post?.username &&
@@ -88,7 +88,7 @@ const Single = () => {
           <div>{desc}</div>
         </div>
         <div className="menu">
-          <Menu />
+          <Menu cat={cat} />
         </div>
       </div>
     </>
