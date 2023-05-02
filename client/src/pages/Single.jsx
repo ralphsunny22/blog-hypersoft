@@ -1,37 +1,70 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import axios from "axios"
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Avatar from "../img/avatar.jpg"
 import Delete from "../img/delete.png"
 import Edit from "../img/edit.png"
 import Menu from '../components/Menu'
+import moment from "moment"
+import { AuthContext } from '../context/authContext'
 
 const Single = () => {
+  const {currentUser, logout} = useContext(AuthContext)
+  const [post, setPost] = useState({})
+
+  const location = useLocation()
+  const postId = location.pathname.split('/')[2]
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/posts/${postId}`)
+        setPost(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    };
+    fetchData();
+    
+  }, [postId])
+
+  const handleDelete = async () => {
+    try {
+      const res = await axios.delete(`http://localhost:5000/api/posts/${postId}`)
+      navigate("/")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className='single'>
       <div className="content">
-        <img src="https://gwammu.com/assets/featured_images/27545.jpeg" alt="" />
+        <img src={post.img} alt="" />
         <div className="user">
-          <img src={Avatar} alt="" />
+          { post.userImg &&
+            <img src={post.userImg} alt="" />
+          }
+          
           <div className="info">
-            <span>John</span>
-            <p>Posted 2 days ago</p>
+            <span>{post.username}</span>
+            <p>Posted {moment(post.date).fromNow()}</p>
           </div>
-          <div className='edit'>
+          {
+            currentUser.username === post.username ?
+            <div className='edit'>
             <Link to={`/write?edit=2`}><img src={Edit} alt="" /></Link>
-            <img src={Delete} alt="" />
-          </div>
+            <img src={Delete} alt="" onClick={handleDelete} />
+          </div> : <></> 
+          }
+          
         </div>
-        <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet accusantium blanditiis tempora et reiciendis magni modi, numquam ab corporis,
-          fuga veniam, pariatur sapiente ducimus. Qui ipsum commodi explicabo voluptate non.
-        </h1>
-        <p>
-        Dolor sit amet consectetur adipisicing elit. Eveniet accusantium blanditiis tempora et reiciendis magni modi, numquam ab corporis,
-        fuga veniam, pariatur sapiente ducimus. Qui ipsum commodi explicabo voluptate non. Dolor sit amet consectetur adipisicing elit. Eveniet accusantium blanditiis tempora et reiciendis magni modi, numquam ab corporis,
-        fuga veniam, pariatur sapiente ducimus. Qui ipsum commodi explicabo voluptate non.
-
-        Aolor sit amet consectetur adipisicing elit. Eveniet accusantium blanditiis tempora et reiciendis magni modi, numquam ab corporis,
-        fuga veniam, pariatur sapiente ducimus. Qui ipsum commodi explicabo voluptate non
-        </p>
+        <h1>{post.title}</h1>
+        <div>
+          {post.desc}
+        </div>
 
       </div>
       <div className="menu">
