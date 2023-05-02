@@ -9,7 +9,7 @@ import cookieParser from "cookie-parser"
 const app = express();
 
 app.use(express.json()) //so dat we can send data to our db
-app.use(cookieParser());
+app.use(cookieParser())
 app.use(cors());
 
 

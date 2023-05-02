@@ -19,7 +19,7 @@ export const register = (req,res)=>{
         const values = [
             req.body.username,
             req.body.email,
-            hash
+            hash //as hashed password
         ]
         db.query(q, [values], (err,data)=>{
             if(err) return res.json(err)
@@ -44,16 +44,15 @@ export const login = (req,res)=>{
         if(!isPasswordCorrect) return res.status(400).json("Incorrect Username or Password");
         
         //jwt, store in cookie
-        const token = jwt.sign({ id: data[0].id }, "jwtkey");
+        const token = jwt.sign({ id: data[0].id }, "jwtKey");
         const { password, ...other } = data[0];
+        other.token = token;
+        //console.log(other)
         res.cookie("access_token", token, {
             httpOnly: true,
         })
         .status(200)
         .json(other);
-        
-        //return res.status(200).json("User Login successfuly")
-        // "Remember Me" for 15 minutes res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
 
 // save as above res.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
     }) 
