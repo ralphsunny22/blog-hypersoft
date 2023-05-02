@@ -48,8 +48,6 @@ export const login = (req,res)=>{
         const { password, ...other } = data[0];
         res.cookie("access_token", token, {
             httpOnly: true,
-            secure: false,
-            sameSite: 'none'
         })
         .status(200)
         .json(other);
@@ -62,5 +60,8 @@ export const login = (req,res)=>{
 };
 
 export const logout = (req,res)=>{
-    res.json("from post controller")
+    res.clearCookie("access_token", {
+        sameSite:"none",
+        secure:true
+    }).status(200).json("User logged Out")
 }
