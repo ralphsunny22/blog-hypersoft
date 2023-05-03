@@ -26,11 +26,16 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 
 app.post('/api/upload', upload.single('file'), function (req, res) {
-    //req.file is the `avatar` file
-    const file = req.file 
-    //reg.body will hold the text fields, if there were any
-
-    res.status(200).json(file.filename)
+  if (req.file) {
+    // A file was uploaded
+    const file = req.file;
+    res.status(200).json(file.filename);
+  } else {
+    // No file was uploaded
+    //res.status(200).json({ message: 'No file uploaded' });
+    // Or you can simply send an empty response
+    res.sendStatus(200);
+  }
 })
 
 

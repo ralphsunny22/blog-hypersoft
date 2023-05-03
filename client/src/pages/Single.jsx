@@ -7,6 +7,7 @@ import Edit from "../img/edit.png"
 import Menu from '../components/Menu'
 import moment from "moment"
 import { AuthContext } from '../context/authContext'
+import { convert } from 'html-to-text'
 
 const Single = () => {
   const {currentUser} = useContext(AuthContext)
@@ -44,9 +45,7 @@ const Single = () => {
       console.log(error)
     }
   }
-  console.log(post)
-  // console.log(post)
-
+  
   if (!post) {
     return <div>Loading...</div>; // Render a loading state when post is null
   }
@@ -62,12 +61,80 @@ const Single = () => {
   //     </div>
   //   </div>
   // );
+  //escape html tags from richText
+
+  // const options = {
+  //   wordwrap: 130,
+  // };
+  // const getText = (html) => {
+  //   //const doc = new DOMParser().parseFromString(html, "text/html")
+  //   //return doc.body.textContent
+  //   return convert(html, options)
+  // }
+
+  // const getText1 = (html) => {
+  //   const doc = new DOMParser().parseFromString(html, "text/html");
+  //   const nodes = Array.from(doc.body.childNodes);
+    
+  //   const traverse = (nodes) => {
+  //     let text = "";
+      
+  //     nodes.forEach((node) => {
+  //       if (node.nodeType === Node.TEXT_NODE) {
+  //         text += node.textContent;
+  //       } else {
+  //         const tagName = node.tagName.toLowerCase();
+          
+  //         if (node.childNodes.length > 0) {
+  //           const childText = traverse(Array.from(node.childNodes));
+  //           text += `<${tagName}>${childText}</${tagName}>`;
+  //         } else {
+  //           text += `<${tagName}></${tagName}>`;
+  //         }
+  //       }
+  //     });
+      
+  //     return text;
+  //   };
+    
+  //   return traverse(nodes);
+  // };
+
+  // const getText = (html) => {
+  //   const doc = new DOMParser().parseFromString(html, "text/html");
+  //   const nodes = Array.from(doc.body.childNodes);
+  
+  //   const traverse = (nodes) => {
+  //     let text = "";
+  
+  //     nodes.forEach((node) => {
+  //       if (node.nodeType === Node.TEXT_NODE) {
+  //         text += node.textContent;
+  //       } else if (node.nodeType === Node.ELEMENT_NODE) {
+  //         const tagName = node.tagName.toLowerCase();
+  
+  //         if (tagName === "strong" || tagName === "em") {
+  //           text += `<${tagName}>${traverse(Array.from(node.childNodes))}</${tagName}>`;
+  //         } else {
+  //           text += traverse(Array.from(node.childNodes));
+  //         }
+  //       }
+  //     });
+  
+  //     return text;
+  //   };
+  
+  //   return traverse(nodes);
+  // };
+  
+  
   
   return (
     <>
       <div className='single'>
         <div className="content">
-          <img src={img} alt="" />
+          <img src={`../uploads/${img}`} alt="" />
+          
           <div className="user">
             {userImg && <img src={userImg} alt="" />}
 
@@ -76,16 +143,18 @@ const Single = () => {
               <p>Posted {post && moment(date).fromNow()}</p>
             </div>
 
-            {currentUser && currentUser.username === post?.username &&
+            {currentUser && currentUser.username === username && (
               <div className='edit'>
-                <Link to={`/write?edit=2`} state={post}><img src={Edit} alt="" /></Link>
+                <Link to={`/write?edit=2`} state={post}>
+                  <img src={Edit} alt="" />
+                </Link>
                 <img src={Delete} alt="" onClick={handleDelete} />
               </div>
-            }
+            )}
           </div>
 
           <h1>{title}</h1>
-          <div>{desc}</div>
+          <div dangerouslySetInnerHTML={{__html: desc}} />
         </div>
         <div className="menu">
           <Menu cat={cat} />

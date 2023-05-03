@@ -22,6 +22,12 @@ const Home = () => {
   }, [cat])
    
   
+  //escape html tags from richText
+  const getText = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html")
+    return doc.body.textContent
+  }
+  
   return (
     <div className='home'>
       <div className="posts">
@@ -35,7 +41,7 @@ const Home = () => {
                 <h1>{post.title}</h1>
                 
               </Link>
-              <p>{post.desc}</p>
+              <p>{getText(post.desc)}</p>
               <button>Read more</button>
             </div>
           </div>

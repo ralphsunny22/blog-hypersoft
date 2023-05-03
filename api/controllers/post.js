@@ -18,7 +18,7 @@ export const getAllPosts = (req,res)=>{
 };
 
 export const getSinglePost = (req,res)=>{
-    const q = "SELECT p.id `username`, `title`, `desc`, p.img, u.img AS userImg, `cat`, `date` FROM users u JOIN posts p ON u.id=p.uid WHERE p.id = ?";
+    const q = "SELECT p.id, `username`, `title`, `desc`, p.img, u.img AS userImg, `cat`, `date` FROM users u JOIN posts p ON u.id=p.uid WHERE p.id = ?";
 
     db.query(q, [req.params.id], (err,data)=>{
         if(err) return res.status(500).json(err)
@@ -73,7 +73,7 @@ export const deletePost = (req,res)=>{
 }
 
 export const updatePost = (req,res)=>{
-    const token = req.headers('Authorization').replace('Bearer ', '');
+    const token = req.header('Authorization').replace('Bearer ', '');
     if(!token) return res.status(500).json("Unauthorised Process")
 
     jwt.verify(token, "jwtKey", (err, userInfo)=>{
@@ -81,7 +81,7 @@ export const updatePost = (req,res)=>{
 
         const postId = req.params.id
         //insert query
-        const q = "UPDATE posts SE T `title`=?,`desc`=?,`img`=?,`cat`=? WHERE `id` = ? AND `uid` = ?"
+        const q = "UPDATE posts SET `title`=?,`desc`=?,`img`=?,`cat`=? WHERE `id` = ? AND `uid` = ?"
         const values = [
             req.body.title,
             req.body.desc,
