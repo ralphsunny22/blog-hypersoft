@@ -8,6 +8,7 @@ import {
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import "./style.scss"
 
 const Layout = () => {
   return (
