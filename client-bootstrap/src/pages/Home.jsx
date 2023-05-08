@@ -7,7 +7,7 @@ import { BsDot, BsFillCheckCircleFill } from 'react-icons/bs'
 
 const Home = () => {
   return (
-    <div className='home'>
+    <div className='home mb-3'>
 
       <section className='first-row mb-5'>
         <div className="row">

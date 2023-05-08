@@ -5,10 +5,11 @@ import {
   Link,
   Outlet,
 } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "./components/general/Navbar";
+import Footer from "./components/general/Footer";
 import Home from "./pages/Home";
 import "./style.scss"
+import Landing from "./pages/landing/Landing";
 
 const Layout = () => {
   return (
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
         element: (<Home/>)
 
       },
+      {
+        path:"/landing",
+        element: (<Landing/>)
+
+      },
       
     ]
   },
@@ -40,7 +46,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="app">
-      <div className="container">
+      <div>
         <RouterProvider router={router}/>
       </div>
     </div>
