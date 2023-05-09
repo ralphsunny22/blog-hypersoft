@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "./landing.scss"
 import { Container, Row, Col } from 'react-bootstrap';
 import Show from "../../img/show.jpg"
@@ -6,32 +6,119 @@ import ShowSide from "../../img/showsmall.jpg"
 import Author from "../../img/author.jpg"
 import PopularPost from "../../img/popularposts.jpg"
 import { BsDot, BsFillCheckCircleFill } from 'react-icons/bs';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { Autoplay, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay';
 
 const Landing = () => {
+  
+
   return (
+
+    
     
     <div className='landing'>
 
     <Container>
       <Row>
         <Col xs={12} md={8}>
+          <Swiper
+            modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
+            
+            spaceBetween={15}
+            slidesPerView={1}
+            autoplay={{ delay: 3000 }}
+            
+            scrollbar={{ draggable: true }}
+            onSlideChange={() => console.log('slide change')}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
+          <SwiperSlide>
+            <div className="content">
+                <div className="image mb-3">
+                  <img src={Show} alt="" className='rounded' />
+                </div>
+                <div className="info">
+                  <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore, amet.</h4>
+                  <p>What young Nigerians need to know</p>
+
+                  <div className="author-brief d-flex align-items-center">
+                    <img src={Author} alt="" />
+                    <span>Michellie Jones <BsFillCheckCircleFill className='active' /> <BsDot/> Mar 6 <BsDot/></span>
+                    <span>Travel, Culture, Lifestyle</span> <BsDot/>
+                    <span>7 min read</span>
+                  </div>
+                  
+                </div>
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
           <div className="content">
               <div className="image mb-3">
                 <img src={Show} alt="" className='rounded' />
               </div>
               <div className="info">
-                <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore, amet.</h4>
+                <h4>sit amet consectetur adipisicing elit. Tempore, amet.</h4>
                 <p>What young Nigerians need to know</p>
 
                 <div className="author-brief d-flex align-items-center">
                   <img src={Author} alt="" />
-                  <span>Michellie Jones <BsFillCheckCircleFill className='active' /> <BsDot/> Mar 6 <BsDot/></span>
+                  <span>Amara Okolie <BsFillCheckCircleFill className='active' /> <BsDot/> Mar 6 <BsDot/></span>
                   <span>Travel, Culture, Lifestyle</span> <BsDot/>
                   <span>7 min read</span>
                 </div>
                 
               </div>
           </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div className="content">
+                <div className="image mb-3">
+                  <img src={Show} alt="" className='rounded' />
+                </div>
+                <div className="info">
+                  <h4>Promax consectetur adipisicing elit. Tempore, amet.</h4>
+                  <p>What young Nigerians need to know</p>
+
+                  <div className="author-brief d-flex align-items-center">
+                    <img src={Author} alt="" />
+                    <span>Amara Okolie <BsFillCheckCircleFill className='active' /> <BsDot/> Mar 6 <BsDot/></span>
+                    <span>Travel, Culture, Lifestyle</span> <BsDot/>
+                    <span>7 min read</span>
+                  </div>
+                  
+                </div>
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div className="content">
+                <div className="image mb-3">
+                  <img src={Show} alt="" className='rounded' />
+                </div>
+                <div className="info">
+                  <h4>Aadipisicing elit. Tempore, amet.</h4>
+                  <p>What young Nigerians need to know</p>
+
+                  <div className="author-brief d-flex align-items-center">
+                    <img src={Author} alt="" />
+                    <span>Amara Okolie <BsFillCheckCircleFill className='active' /> <BsDot/> Mar 6 <BsDot/></span>
+                    <span>Travel, Culture, Lifestyle</span> <BsDot/>
+                    <span>7 min read</span>
+                  </div>
+                  
+                </div>
+            </div>
+          </SwiperSlide>
+
+          </Swiper>
         </Col>
 
         <Col xs={12} md={4}>
@@ -127,67 +214,110 @@ const Landing = () => {
                   </div>
                 </div>
               </div>
+
+              <div className="content d-flex align-items-start mb-3">
+                <div className="image">
+                  <img src={ShowSide} alt="" />
+                </div>
+                <div className='info'>
+                  <h5>The secret to getting students to listen to you</h5>
+                  <p>What did all of your best teachers have in common? They established classroom alpha-dog status earlier in the year.</p>
+                  <div>
+                    <span>Antawnia Jamison <BsFillCheckCircleFill/></span> <span><BsDot/></span> <span>Mar 6</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="content d-flex align-items-start mb-3">
+                <div className="image">
+                  <img src={ShowSide} alt="" />
+                </div>
+                <div className='info'>
+                  <h5>The secret to getting students to listen to you</h5>
+                  <p>What did all of your best teachers have in common? They established classroom alpha-dog status earlier in the year.</p>
+                  <div>
+                    <span>Antawnia Jamison <BsFillCheckCircleFill/></span> <span><BsDot/></span> <span>Mar 6</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="content d-flex align-items-start mb-3">
+                <div className="image">
+                  <img src={ShowSide} alt="" />
+                </div>
+                <div className='info'>
+                  <h5>The secret to getting students to listen to you</h5>
+                  <p>What did all of your best teachers have in common? They established classroom alpha-dog status earlier in the year.</p>
+                  <div>
+                    <span>Antawnia Jamison <BsFillCheckCircleFill/></span> <span><BsDot/></span> <span>Mar 6</span>
+                  </div>
+                </div>
+              </div>
             </Col>
-            <Col xs={12} md={4}>
+
+            <Col xs={12} md={4} className="min-vh-100">
               <div className="popular-posts bg-white border rounded p-3 mb-3">
-                <h6>Popular Posts</h6>
-                <hr />
-                <div className="content d-flex align-items-start mb-3">
-                  <div className="image">
-                    <img src={PopularPost} alt="" />
-                    <div className='indexNumber'>04</div>
+
+                <div className="sticky">
+                  <h6>Popular Posts</h6>
+                  <hr />
+                  <div className="content d-flex align-items-start mb-3">
+                    <div className="image">
+                      <img src={PopularPost} alt="" />
+                      <div className='indexNumber'>04</div>
+                    </div>
+                    <div className='info'>
+                      <h4>The secret to getting students to listen to you</h4>
+                      
+                      <p>
+                        2.5k views | by Antawnia Jamison <BsFillCheckCircleFill/> | posted on Mar 6, 2023
+                      </p>
+                    </div>
                   </div>
-                  <div className='info'>
-                    <h4>The secret to getting students to listen to you</h4>
-                    
-                    <p>
-                      2.5k views | by Antawnia Jamison <BsFillCheckCircleFill/> | posted on Mar 6, 2023
-                    </p>
+
+                  <div className="content d-flex align-items-start mb-3">
+                    <div className="image">
+                      <img src={PopularPost} alt="" />
+                      <div className='indexNumber'>04</div>
+                    </div>
+                    <div className='info'>
+                      <h4>The secret to getting students to listen to you</h4>
+                      
+                      <p>
+                        2.5k views | by Antawnia Jamison <BsFillCheckCircleFill/> | posted on Mar 6, 2023
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="content d-flex align-items-start mb-3">
+                    <div className="image">
+                      <img src={PopularPost} alt="" />
+                      <div className='indexNumber'>04</div>
+                    </div>
+                    <div className='info'>
+                      <h4>The secret to getting students to listen to you</h4>
+                      
+                      <p>
+                        2.5k views | by Antawnia Jamison <BsFillCheckCircleFill/> | posted on Mar 6, 2023
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="content d-flex align-items-start mb-3">
+                    <div className="image">
+                      <img src={PopularPost} alt="" />
+                      <div className='indexNumber'>04</div>
+                    </div>
+                    <div className='info'>
+                      <h4>The secret to getting students to listen to you</h4>
+                      
+                      <p>
+                        2.5k views | by Antawnia Jamison <BsFillCheckCircleFill/> | posted on Mar 6, 2023
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="content d-flex align-items-start mb-3">
-                  <div className="image">
-                    <img src={PopularPost} alt="" />
-                    <div className='indexNumber'>04</div>
-                  </div>
-                  <div className='info'>
-                    <h4>The secret to getting students to listen to you</h4>
-                    
-                    <p>
-                      2.5k views | by Antawnia Jamison <BsFillCheckCircleFill/> | posted on Mar 6, 2023
-                    </p>
-                  </div>
-                </div>
-
-                <div className="content d-flex align-items-start mb-3">
-                  <div className="image">
-                    <img src={PopularPost} alt="" />
-                    <div className='indexNumber'>04</div>
-                  </div>
-                  <div className='info'>
-                    <h4>The secret to getting students to listen to you</h4>
-                    
-                    <p>
-                      2.5k views | by Antawnia Jamison <BsFillCheckCircleFill/> | posted on Mar 6, 2023
-                    </p>
-                  </div>
-                </div>
-
-                <div className="content d-flex align-items-start mb-3">
-                  <div className="image">
-                    <img src={PopularPost} alt="" />
-                    <div className='indexNumber'>04</div>
-                  </div>
-                  <div className='info'>
-                    <h4>The secret to getting students to listen to you</h4>
-                    
-                    <p>
-                      2.5k views | by Antawnia Jamison <BsFillCheckCircleFill/> | posted on Mar 6, 2023
-                    </p>
-                  </div>
-                </div>
-                
               </div>
 
               <div className="upgrade border rounded p-3">

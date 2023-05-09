@@ -10,6 +10,7 @@ import Footer from "./components/general/Footer";
 import Home from "./pages/Home";
 import "./style.scss"
 import Landing from "./pages/landing/Landing";
+import SinglePost from "./pages/singlePost/SinglePost";
 
 const Layout = () => {
   return (
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
       {
         path:"/landing",
         element: (<Landing/>)
+
+      },
+      {
+        path:"/post/:id",
+        element: (<SinglePost/>)
 
       },
       

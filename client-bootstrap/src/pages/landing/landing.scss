@@ -1,4 +1,15 @@
 $blueColor: #034694;
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+}
+h1,h2,h3,h4,h5,h6
+p,
+div {
+font-family: Lato;
+}
 .app{
     
     .landing{
@@ -66,6 +77,25 @@ $blueColor: #034694;
 
             .popular-posts{
 
+                .sticky {
+                    position: relative; /* or whatever position style you want before the element becomes sticky */
+                    transition: position 0.3s ease-in-out; /* add a transition effect to smooth the sticky behavior */
+                  }
+                  
+                .sticky {
+                    position: sticky;
+                    top: 0;
+                    z-index: 1;
+                    background-color: #fff;
+                    padding: 10px;
+                  }
+                // .sticky.sticky {
+                //     position: fixed;
+                //     top: 0;
+                //     width: 100%;
+                //     z-index: 1;
+                //   }
+                  
                 .content{
                     gap: 20px;
 
