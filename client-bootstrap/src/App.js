@@ -8,9 +8,10 @@ import {
 import Navbar from "./components/general/Navbar";
 import Footer from "./components/general/Footer";
 import Home from "./pages/Home";
-import "./style.scss"
+//import "./style.scss"
 import Landing from "./pages/landing/Landing";
 import SinglePost from "./pages/singlePost/SinglePost";
+import CreatePost from "./pages/admin/posts/CreatePost";
 
 const Layout = () => {
   return (
@@ -30,19 +31,22 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path:"/",
+        path:"/home",
         element: (<Home/>)
 
       },
       {
-        path:"/landing",
+        path:"/",
         element: (<Landing/>)
 
       },
       {
         path:"/post/:id",
         element: (<SinglePost/>)
-
+      },
+      {
+        path:"/admin/create-post",
+        element: (<CreatePost/>)
       },
       
     ]
